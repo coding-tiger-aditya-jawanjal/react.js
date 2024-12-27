@@ -28,11 +28,12 @@ nav {
   gap: 20px;
 }
 
-span {
+.link {
+  text-decoration: none;
   transition: all ease-in-out 500ms;
 }
 
-span:hover {
+.link:hover {
   cursor: pointer;
   color: blue;
   scale: 115%;
