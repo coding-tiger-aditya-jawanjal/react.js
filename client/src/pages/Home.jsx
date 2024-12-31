@@ -14,6 +14,7 @@ const Home = () => {
   };
 
   return (
+
     <div className="home">
       <div className="temp">
         <h2 onClick={handleMinus}> - </h2>
