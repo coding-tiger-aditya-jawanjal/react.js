@@ -19,7 +19,7 @@ const Navbar = () => {
           <Link to={"/contact"} className="link">
             Contact
           </Link>
-          <Link to={"/Products"} className="link">
+          <Link to={"/products"} className="link">
             Products
           </Link>
         </nav>

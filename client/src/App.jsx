@@ -7,6 +7,7 @@ import Products from "./pages/Products";
 import Error from "./pages/Error";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SingleProduct from "./pages/SingleProduct";
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/Products" element={<Products />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product/:id" element={<SingleProduct />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </div>
