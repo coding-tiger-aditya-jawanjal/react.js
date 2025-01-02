@@ -1,8 +1,10 @@
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { useShop } from "../Context";
 
 const Temp = ({ name }) => {
+  const { soap, count , setSoap , setCount } = useShop();
   // useState
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   // useMemo hook - to memoise value
   const calculate = useMemo(() => {
@@ -15,7 +17,7 @@ const Temp = ({ name }) => {
   }, [name]);
 
   console.log(calculate);
-  
+
   // useEffect
   useEffect(() => {
     console.log("Hello !");
@@ -23,7 +25,7 @@ const Temp = ({ name }) => {
 
   return (
     <div>
-      <h1>Temp Component</h1>
+      <h1>Temp Component {count}</h1>
     </div>
   );
 };

@@ -8,8 +8,12 @@ import Error from "./pages/Error";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleProduct from "./pages/SingleProduct";
+import { useShop } from "./Context";
 
 const App = () => {
+  const { soap, count } = useShop();
+  console.log(soap , count);
+  
   return (
     <BrowserRouter>
       <main>
