@@ -6,14 +6,19 @@ export const ContextProvider = ({ children }) => {
   const [soap, setSoap] = useState(true);
   const [count, setCount] = useState(36);
   const [products, setProducts] = useState([]);
+  const [name, setName] = useState("");
 
-  useEffect(()=>{
+  let total = 159;
+
+  useEffect(() => {
     // data fetched
     // store the response in products
-  },[])
+  }, []);
 
   return (
-    <Context.Provider value={{ soap, setSoap, count, setCount }}>
+    <Context.Provider
+      value={{ soap, setSoap, count, total, setCount, setName, name }}
+    >
       {children}
     </Context.Provider>
   );

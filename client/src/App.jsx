@@ -11,12 +11,12 @@ import SingleProduct from "./pages/SingleProduct";
 import { useShop } from "./Context";
 
 const App = () => {
-  const { soap, count } = useShop();
-  console.log(soap , count);
-  
+  const { setName } = useShop();
+
   return (
     <BrowserRouter>
       <main>
+        <input type="text" onChange={(e) => setName(e.target.value)} />
         <div>
           <Navbar />
           <Routes>
