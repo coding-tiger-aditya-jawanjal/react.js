@@ -1,25 +1,26 @@
-import { useState } from "react";
+import { useReducer } from "react";
 
 const Home = () => {
-  // useState Hook
-  const [count, setCount] = useState(0);
-  //     variable - function          initial value
+  // useReducer Hook
+  const initialState = 0;
 
-  const handleMinus = () => {
-    setCount((pre) => pre - 1);
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "inc":
+        return state + 1;
+      case "dec":
+        return state - 1;
+    }
   };
 
-  const handlePlus = () => {
-    setCount((pre) => pre + 1);
-  };
+  const [count, dispatch] = useReducer(reducer, initialState);
 
   return (
-
     <div className="home">
       <div className="temp">
-        <h2 onClick={handleMinus}> - </h2>
+        <h2 onClick={() => dispatch({ type: "dec" })}> - </h2>
         <h1>{count}</h1>
-        <h2 onClick={handlePlus}> + </h2>
+        <h2 onClick={() => dispatch({ type: "inc" })}> + </h2>
       </div>
     </div>
   );

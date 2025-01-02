@@ -67,3 +67,7 @@ button:hover {
   top: 8px;
   cursor: pointer;
 }
+
+.file{
+  display: none;
+}

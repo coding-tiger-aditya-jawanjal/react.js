@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Temp from "../components/Temp";
 
 const About = () => {
   const [name, setName] = useState("");
@@ -17,8 +18,12 @@ const About = () => {
     setPassword("");
   };
 
+  // ref
+  const ref = useRef();
+
   return (
     <form>
+      <Temp name="dino" />
       <h1>Register !</h1>
       <input
         type="text"
@@ -50,6 +55,15 @@ const About = () => {
           )}
         </div>
       </div>
+      <input type="file" className="file" ref={ref} />
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          ref.current.click();
+        }}
+      >
+        Upload Pic
+      </button>
       <button onClick={handleSubmit}>Submit</button>
     </form>
   );
