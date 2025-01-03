@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -10,14 +11,20 @@ const Contact = () => {
 
     // Session Storage
     sessionStorage.setItem("name", name);
+
+    // cookies
+    Cookies.set("name", name, { expires: 1 });
   };
 
   const handleDelete = () => {
     // localStorage.clear();
     localStorage.removeItem("name");
-    
+
     // sessionStorage.clear();
     sessionStorage.removeItem("name");
+
+    // cookies
+    Cookies.remove("name");
   };
 
   useEffect(() => {
@@ -26,6 +33,9 @@ const Contact = () => {
 
     // session Storage
     const s = sessionStorage.getItem("name");
+
+    // cookies
+    Cookies.get("name");
 
     setStorageName(s);
   }, []);
