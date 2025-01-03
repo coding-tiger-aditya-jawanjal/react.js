@@ -8,15 +8,15 @@ import Error from "./pages/Error";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SingleProduct from "./pages/SingleProduct";
-import { useShop } from "./Context";
+// import { useShop } from "./Context";
 
 const App = () => {
-  const { setName } = useShop();
+  // const { setName } = useShop();
 
   return (
     <BrowserRouter>
       <main>
-        <input type="text" onChange={(e) => setName(e.target.value)} />
+        {/* <input type="text" onChange={(e) => setName(e.target.value)} /> */}
         <div>
           <Navbar />
           <Routes>
