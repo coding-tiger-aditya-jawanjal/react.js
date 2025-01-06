@@ -1,0 +1,27 @@
+E-Commerce Website
+
+const details = {
+    userName:'Aditya',
+    email:'adi@gmail.com', 
+    password:'123'
+}
+
+UI Part : (temporary adjustment)
+
+1. Login Page 
+    (localstotage.setItem('token',true))
+    (localstotage.setItem('user-details',details))
+
+
+1. User Clicks Login Button
+2. Data will sent to Backend with API Call (fetch     request)
+3. Check Validation
+4. Check if already exists 
+5. Hash password
+6. Save user in Database
+7. Backend Generate Token
+8. Save the token in server side cookies
+9. Send the response to client (frontend)
+10. We will do :
+
+let auth = true;

@@ -1,9 +1,17 @@
+import { useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-const AdminLayout = () => {
-  let auth = localStorage.getItem('user');
+const array = [1, { name: "Aditya" }, [45, "jgsfhjsg"]];
 
-  return <div>{auth ? <Outlet /> : <Navigate to={"/login"} />}</div>
+const AdminLayout = () => {
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(array));
+  }, []);
+
+  let auth = true;
+
+
+  return <div>{auth ? <Outlet /> : <Navigate to={"/login"} />}</div>;
 };
 
 export default AdminLayout;
