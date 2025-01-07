@@ -1,0 +1,21 @@
+php                             node.js
+
+
+
+
+restaurant 
+
+waiter one                      waiter two
+
+1. take order from customer    1. he takes order
+2. He will go to kitchen       2. he takes another 
+and wait                            order
+3. he will give order to        3. her serves the 
+customer                            first order
+4. he will take next            4. serve the 
+custumer`s order                    second order
+
+node.js
+// single threaded
+// non blocking
+// async programming

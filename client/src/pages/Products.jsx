@@ -8,7 +8,12 @@ const Products = () => {
 
   // Function to Fetch Products
   const fetchProducts = async () => {
-    const data = await fetch("https://fakestoreapi.com/products");
+    const data = await fetch("https://fakestoreapi.com/products", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const result = await data.json();
     setProducts(result);
   };

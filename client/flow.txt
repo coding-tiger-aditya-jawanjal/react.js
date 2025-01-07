@@ -25,3 +25,18 @@ UI Part : (temporary adjustment)
 10. We will do :
 
 let auth = true;
+
+
+React.JS
+
+1. Components
+2. Props
+3. Routing
+4. useState
+5. useEffect
+6. Nested Components
+7. Nested Routing
+8. useContext
+9. Storage 
+10. useReducer
+11. API fetch
