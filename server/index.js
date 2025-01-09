@@ -1,8 +1,10 @@
-const http = require("http");
+const express = require("express");
+const router = require("./routes");
 
-http
-  .createServer(function (req, res) {
-    res.writeHead(200, { "content-type": "text/html" });
-    res.end(`<h1>Hello Node</h1>`);
-  })
-  .listen(5000);
+const app = express();
+
+app.use("/api", router);
+
+app.listen(5000, () => {
+  console.log("Server is running on PORT : 5000");
+});
