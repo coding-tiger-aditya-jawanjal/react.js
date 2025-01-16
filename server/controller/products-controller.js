@@ -14,5 +14,6 @@ exports.myFunction = (req, res) => {
     msg: "Succesfully get the products !",
     items: products,
     confirmed: true,
+    isAdmin:false
   });
 };
