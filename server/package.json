@@ -1,15 +1,17 @@
 {
-  "name": "mern",
+  "name": "mern-stack",
   "version": "1.0.0",
-  "description": "mern course",
+  "description": "This is a MERN Stack Course.",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "keywords": [
-    "mern"
+    "MERN",
+    "Backend"
   ],
   "author": "Aditya Jawanjal",
   "license": "ISC",
