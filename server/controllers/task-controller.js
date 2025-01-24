@@ -30,4 +30,17 @@ exports.deleteTask = async (req, res) => {
   res.status(200).json({ msg: "task Deleted !" });
 };
 
+exports.updateTask = async (req, res) => {
+  const { id } = req.params;
+  const { newTitle } = req.body;
+
+  await Task.findByIdAndUpdate(
+    id,
+    { $set: { title: newTitle, isCompleted: true } },
+    { new: true }
+  );
+
+  res.status(201).json({ msg: "task updated !" });
+};
+
 // CRUD - Create , Read , Update , Delete
