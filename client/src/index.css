@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  min-height: 100dvh;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  padding: 40px 20px;
+  background: #014747;
+  color: aliceblue;
+  border-radius: 5px;
+  min-width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input {
+  width: 90%;
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 1.3rem;
+  border-radius: 5px;
+}
+
+button {
+  width: 150px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background: #abeab3;
+  height: 50px;
+  transition: all ease-in-out 300ms;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #7486c2;
+  scale: 105%;
+}
+
+.task-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 1.5rem;
+}
+
+.single-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.edit {
+  color: rgb(108, 108, 248);
+}
+
+.delete {
+  color: red;
+}
+
+.edit:hover,
+.delete:hover {
+  cursor: pointer;
+  scale: 105%;
+}

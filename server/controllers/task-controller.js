@@ -12,7 +12,7 @@ exports.addTask = async (req, res) => {
 };
 
 exports.getAllTasks = async (req, res) => {
-  const data = await Task.find().sort({ createdAt: -1 }).limit(3).skip(2);
+  const data = await Task.find();
   res.status(200).json({ msg: "All tasks fetched !", data });
 };
 

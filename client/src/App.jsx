@@ -1,29 +1,51 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Dashboard from "./nested/Dashboard";
-import AdminLayout from "./nested/AdminLayout";
-import Layout from "./nested/Layout";
-
-/*
-    1. Nested Routes
-    2. Children
-    3. Outlet
-    4. Navigate
-*/
+import { useEffect, useState } from "react";
+import { FiEdit } from "react-icons/fi";
+import { MdDelete } from "react-icons/md";
 
 const App = () => {
+  const [tasks, setTasks] = useState([]);
+
+  const fetchTasks = async () => {
+    const res = await fetch(`http://localhost:5000/api/task`);
+    const data = await res.json();
+    setTasks(data.data);
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<h1>Login Page</h1>} />
-        {/* nested route  */}
-        <Route path="/" element={<AdminLayout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="order" element={<h1>Order Page</h1>} />
-          <Route path="cart" element={<Layout>Cart Page</Layout>} />
-        </Route>
-        {/* nested route  */}
-      </Routes>
-    </BrowserRouter>
+    <main className="main">
+      <div className="box">
+        <h1>Task Manager</h1>
+
+        <div className="input-box">
+          <input type="text" placeholder="Write a Task..." />
+          <button>Add Task</button>
+        </div>
+
+        <div className="task-box">
+          {tasks.length > 0 ? (
+            tasks.map((element, index) => {
+              return (
+                <div className="single-task" key={element._id}>
+                  <p>
+                    {index + 1}. {element.title}
+                  </p>
+                  <div className="icons">
+                    <FiEdit size={28} className="edit" />
+                    <MdDelete size={32} className="delete" />
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <p>No Task yet</p>
+          )}
+        </div>
+      </div>
+    </main>
   );
 };
 
