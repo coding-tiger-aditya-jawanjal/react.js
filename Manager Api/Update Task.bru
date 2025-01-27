@@ -4,8 +4,14 @@ meta {
   seq: 6
 }
 
-delete {
-  url: http://localhost:5000/api/task/679221ee65b601b2ecc2fb12
-  body: none
+put {
+  url: http://localhost:5000/api/task/6790cf4c010b1e0154adba3a
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "newTitle":"This is task 1 gklasjbflablvclasbcvjlbalbcvlsblbvlabslVbla"
+  }
 }

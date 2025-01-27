@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState();
+  const [change, setChange] = useState(false);
 
   const fetchTasks = async () => {
     const res = await fetch(`http://localhost:5000/api/task`);
@@ -11,9 +14,40 @@ const App = () => {
     setTasks(data.data);
   };
 
+  const handleAddTask = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch(`http://localhost:5000/api/task`, {
+      method: "POST",
+      body: JSON.stringify({
+        title: newTask,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+    toast.success(data.msg);
+    setNewTask();
+    setChange((pre) => !pre);
+  };
+
+  const handleDeleteTask = async (e, id) => {
+    e.preventDefault();
+
+    const res = await fetch(`http://localhost:5000/api/task/${id}`, {
+      method: "DELETE",
+    });
+
+    const data = await res.json();
+    toast.warn(data.msg);
+    setChange((pre) => !pre);
+  };
+
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [change]);
 
   return (
     <main className="main">
@@ -21,8 +55,13 @@ const App = () => {
         <h1>Task Manager</h1>
 
         <div className="input-box">
-          <input type="text" placeholder="Write a Task..." />
-          <button>Add Task</button>
+          <input
+            type="text"
+            placeholder="Write a Task..."
+            onChange={(e) => setNewTask(e.target.value)}
+            value={newTask ? newTask : ""}
+          />
+          <button onClick={handleAddTask}>Add Task</button>
         </div>
 
         <div className="task-box">
@@ -35,7 +74,11 @@ const App = () => {
                   </p>
                   <div className="icons">
                     <FiEdit size={28} className="edit" />
-                    <MdDelete size={32} className="delete" />
+                    <MdDelete
+                      size={32}
+                      className="delete"
+                      onClick={(e) => handleDeleteTask(e, element._id)}
+                    />
                   </div>
                 </div>
               );
