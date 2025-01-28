@@ -8,6 +8,9 @@ const App = () => {
   const [newTask, setNewTask] = useState();
   const [change, setChange] = useState(false);
 
+  const [update, setUpdate] = useState(false);
+  const [updateId, setUpdateId] = useState();
+
   const fetchTasks = async () => {
     const res = await fetch(`http://localhost:5000/api/task`);
     const data = await res.json();
@@ -45,6 +48,33 @@ const App = () => {
     setChange((pre) => !pre);
   };
 
+  const handleEdit = (e, id, title) => {
+    e.preventDefault();
+
+    setUpdateId(id);
+    setUpdate(true);
+    setNewTask(title);
+  };
+
+  const handleUpdate = async () => {
+    const res = await fetch(`http://localhost:5000/api/task/${updateId}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        newTitle: newTask,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await res.json();
+    setChange((pre) => !pre);
+    setNewTask("");
+    setUpdate(false);
+    setUpdateId();
+    toast.success(data.msg);
+  };
+
   useEffect(() => {
     fetchTasks();
   }, [change]);
@@ -61,7 +91,9 @@ const App = () => {
             onChange={(e) => setNewTask(e.target.value)}
             value={newTask ? newTask : ""}
           />
-          <button onClick={handleAddTask}>Add Task</button>
+          <button onClick={update ? handleUpdate : handleAddTask}>
+            {update ? "Update" : "Add Task"}
+          </button>
         </div>
 
         <div className="task-box">
@@ -73,7 +105,13 @@ const App = () => {
                     {index + 1}. {element.title}
                   </p>
                   <div className="icons">
-                    <FiEdit size={28} className="edit" />
+                    <FiEdit
+                      size={28}
+                      className="edit"
+                      onClick={(e) =>
+                        handleEdit(e, element?._id, element?.title)
+                      }
+                    />
                     <MdDelete
                       size={32}
                       className="delete"
