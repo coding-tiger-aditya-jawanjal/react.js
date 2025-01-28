@@ -8,8 +8,7 @@ const App = () => {
   const [newTask, setNewTask] = useState();
   const [change, setChange] = useState(false);
 
-  const [update, setUpdate] = useState(false);
-  const [updateId, setUpdateId] = useState();
+  const [updateId, setUpdateId] = useState(null);
 
   const fetchTasks = async () => {
     const res = await fetch(`http://localhost:5000/api/task`);
@@ -52,7 +51,6 @@ const App = () => {
     e.preventDefault();
 
     setUpdateId(id);
-    setUpdate(true);
     setNewTask(title);
   };
 
@@ -70,8 +68,7 @@ const App = () => {
     const data = await res.json();
     setChange((pre) => !pre);
     setNewTask("");
-    setUpdate(false);
-    setUpdateId();
+    setUpdateId(null);
     toast.success(data.msg);
   };
 
@@ -91,8 +88,8 @@ const App = () => {
             onChange={(e) => setNewTask(e.target.value)}
             value={newTask ? newTask : ""}
           />
-          <button onClick={update ? handleUpdate : handleAddTask}>
-            {update ? "Update" : "Add Task"}
+          <button onClick={updateId ? handleUpdate : handleAddTask}>
+            {updateId ? "Update" : "Add Task"}
           </button>
         </div>
 
