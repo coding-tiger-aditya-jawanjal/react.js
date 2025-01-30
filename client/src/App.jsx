@@ -3,6 +3,8 @@ import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 
+const url = import.meta.env.VITE_BACKEND_URL;
+
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState();
@@ -11,7 +13,7 @@ const App = () => {
   const [updateId, setUpdateId] = useState(null);
 
   const fetchTasks = async () => {
-    const res = await fetch(`http://localhost:5000/api/task`);
+    const res = await fetch(`${url}/task`, { mode: "no-cors" });
     const data = await res.json();
     setTasks(data.data);
   };
@@ -19,8 +21,9 @@ const App = () => {
   const handleAddTask = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:5000/api/task`, {
+    const res = await fetch(`${url}/task`, {
       method: "POST",
+      mode: "no-cors",
       body: JSON.stringify({
         title: newTask,
       }),
@@ -38,8 +41,9 @@ const App = () => {
   const handleDeleteTask = async (e, id) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:5000/api/task/${id}`, {
+    const res = await fetch(`${url}/task/${id}`, {
       method: "DELETE",
+      mode: "no-cors",
     });
 
     const data = await res.json();
@@ -55,8 +59,9 @@ const App = () => {
   };
 
   const handleUpdate = async () => {
-    const res = await fetch(`http://localhost:5000/api/task/${updateId}`, {
+    const res = await fetch(`${url}/task/${updateId}`, {
       method: "PUT",
+      mode: "no-cors",
       body: JSON.stringify({
         newTitle: newTask,
       }),
