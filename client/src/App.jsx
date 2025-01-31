@@ -13,9 +13,9 @@ const App = () => {
   const [updateId, setUpdateId] = useState(null);
 
   const fetchTasks = async () => {
-    const res = await fetch(`${url}/task`, { mode: "no-cors" });
+    const res = await fetch(`${url}/task`);
     const data = await res.json();
-    setTasks(data.data);
+    setTasks(data?.data);
   };
 
   const handleAddTask = async (e) => {
@@ -23,7 +23,6 @@ const App = () => {
 
     const res = await fetch(`${url}/task`, {
       method: "POST",
-      mode: "no-cors",
       body: JSON.stringify({
         title: newTask,
       }),
@@ -43,7 +42,6 @@ const App = () => {
 
     const res = await fetch(`${url}/task/${id}`, {
       method: "DELETE",
-      mode: "no-cors",
     });
 
     const data = await res.json();
@@ -61,7 +59,6 @@ const App = () => {
   const handleUpdate = async () => {
     const res = await fetch(`${url}/task/${updateId}`, {
       method: "PUT",
-      mode: "no-cors",
       body: JSON.stringify({
         newTitle: newTask,
       }),
