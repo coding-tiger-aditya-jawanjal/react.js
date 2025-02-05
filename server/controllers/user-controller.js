@@ -40,7 +40,7 @@ exports.signup = async (req, res) => {
       httpOnly: true,
       path: "/",
       secure: false,
-      sameSite:"Lax" // Strict , None , Lax
+      sameSite: "Lax", // Strict , None , Lax
     });
 
     res
@@ -53,6 +53,55 @@ exports.signup = async (req, res) => {
   }
 };
 
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ msg: "Email & Password required !" });
+    }
+
+    const emailExists = await User.findOne({ email });
+
+    if (!emailExists) {
+      return res.status(400).json({ msg: "Sign Up First !" });
+    }
+
+    const isPasswordMatched = await bcrypt.compare(
+      password,
+      emailExists.password
+    );
+
+    if (!isPasswordMatched) {
+      return res.status(400).json({ msg: "Invalid credentials !" });
+    }
+
+    const token = jwt.sign({ token: emailExists._id }, "my-secret", {
+      expiresIn: "7d",
+    });
+
+    if (!token) {
+      return res.status(400).json({ msg: "Error while generating Token !" });
+    }
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      path: "/",
+      secure: false,
+      sameSite: "Lax", // Strict , None , Lax
+    });
+
+    res.status(200).json({ msg: "User Logged In Successfully !" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ msg: "Internal Server Error !", err: error.message });
+  }
+};
+
+exports.private = (req, res) => {
+  res.status(200).json({ msg: "You are Authenticated User !", user: req.user });
+};
 /*
 
 1. User will add Name , Email & Password in Form.

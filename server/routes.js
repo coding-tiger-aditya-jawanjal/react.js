@@ -6,7 +6,8 @@ const {
   deleteTask,
   updateTask,
 } = require("./controllers/task-controller");
-const { signup } = require("./controllers/user-controller");
+const { signup, login, private } = require("./controllers/user-controller");
+const auth = require("./middleware/auth");
 
 const router = express.Router();
 
@@ -19,5 +20,8 @@ router.put(`/task/:id`, updateTask);
 
 // user routes
 router.post(`/user/signup`, signup);
+router.post(`/user/login`, login);
+
+router.get("/private", auth, private);
 
 module.exports = router;
