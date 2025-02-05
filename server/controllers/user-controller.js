@@ -36,6 +36,13 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ msg: "Error while generating Token !" });
     }
 
+    res.cookie("token", token, {
+      httpOnly: true,
+      path: "/",
+      secure: false,
+      sameSite:"Lax" // Strict , None , Lax
+    });
+
     res
       .status(200)
       .json({ msg: "User Signed Up Successfully !", savedUser, token });
